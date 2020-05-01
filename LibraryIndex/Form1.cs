@@ -62,7 +62,7 @@ namespace LibraryIndex
             while(high >= low)
             {
                 int middle = (low + high) / 2;
-                int compare = searchList[middle].CompareTo(searchValue + "");
+                int compare = searchList[middle].CompareTo(searchValue + ""); 
 
                 if (compare == 0)
                 {
