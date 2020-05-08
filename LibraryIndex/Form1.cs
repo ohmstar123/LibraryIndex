@@ -66,7 +66,7 @@ namespace LibraryIndex
             return false;
         }
 
-        public Boolean BinarySearch(List<string> searchList, int searchValue)
+        public Boolean BinarySearch(List<Book> searchList, int searchValue)
         {
             int low = 0;
             int high = bookTypes.Count - 1;
