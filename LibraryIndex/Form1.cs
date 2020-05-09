@@ -44,53 +44,58 @@ namespace LibraryIndex
             }
             int bookNumber = Convert.ToInt32(referenceNumberInput.Text);
 
-            Boolean foundLinear = LinearSearch(bookObjects, bookNumber);
-            linearSearchOutput.Text = foundLinear + "";
+            String foundLinear = LinearSearch(bookObjects, bookNumber);
+            linearSearchOutput.Text = foundLinear;
 
-            Boolean foundBinary = BinarySearch(bookObjects, bookNumber);
+            String foundBinary = BinarySearch(bookObjects, bookNumber);
             binarySearchOutput.Text = foundBinary + "";
-
-            // bookObjects.Add(referenceNumberInput.Text);
 
         }
 
-        public Boolean LinearSearch(List<Book> searchList, int searchValue)
+        public String LinearSearch(List<Book> searchList, int searchValue)
         {
             foreach (Book s in searchList)
             {
-                if (s == searchValue + "")
+                if (s.referenceNumber == searchValue)
                 {
-                    return true;
+                    return s.bookTitle;
                 }
             }
-            return false;
+            return "Not Found";
         }
 
-        public Boolean BinarySearch(List<Book> searchList, int searchValue)
+        public String BinarySearch(List<Book> searchList, int searchValue)
         {
-            int low = 0;
-            int high = bookTypes.Count - 1;
+            
+            
+                int low = 0;
+                int high = bookTypes.Count - 1;
 
-            while(high >= low)
-            {
-                int middle = (low + high) / 2;
-                int compare = searchList[middle].CompareTo(searchValue + ""); 
+                while (high >= low)
+                {
 
-                if (compare == 0)
-                {
-                    return true;
-                } 
-                else if (compare < 0)
-                {
-                    low = middle + 1;
+
+                    int middle = (low + high) / 2;
+                    int compare = bookObjects[middle].referenceNumber.CompareTo(searchValue);
+
+                    if (compare == 0)
+                    {
+                        return bookObjects[middle].bookTitle;
+                    }
+                    else if (compare < 0)
+                    {
+                        low = middle + 1;
+                        
+                    }
+                    else
+                    {
+                        high = middle - 1;
+                     
+                    }
+                    
                 }
-                else
-                {
-                    high = middle - 1;
-                }
-            }
-            return false;
-
+                return "Not Found";
+            
         }
     }
 }
